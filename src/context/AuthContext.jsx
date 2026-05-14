@@ -23,13 +23,17 @@ export function AuthProvider({ children }) {
     setProfile(profileData);
   };
 
+  const updateProfile = (patch) => {
+    setProfile((prev) => (prev ? { ...prev, ...patch } : prev));
+  };
+
   const signOut = () => {
     setUser(null);
     setProfile(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, profile, signInWithPhone, verifyOTP, completeOnboarding, signOut, loading: false }}>
+    <AuthContext.Provider value={{ user, profile, signInWithPhone, verifyOTP, completeOnboarding, updateProfile, signOut, loading: false }}>
       {children}
     </AuthContext.Provider>
   );

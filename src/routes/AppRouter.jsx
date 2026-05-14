@@ -12,6 +12,10 @@ import HomePage from "../pages/app/HomePage";
 import MatchesPage from "../pages/app/MatchesPage";
 import ChatPage from "../pages/app/ChatPage";
 import SettingsPage from "../pages/app/SettingsPage";
+import NotificationSettingsPage from "../pages/app/NotificationSettingsPage";
+import PrivacySettingsPage from "../pages/app/PrivacySettingsPage";
+import HelpSupportPage from "../pages/app/HelpSupportPage";
+import AboutZotMatePage from "../pages/app/AboutZotMatePage";
 
 export default function AppRouter() {
   return (
@@ -39,6 +43,10 @@ export default function AppRouter() {
           <Route path="/matches" element={<MatchesPage />} />
           <Route path="/matches/:id" element={<ChatPage />} />
           <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/settings/notifications" element={<NotificationSettingsPage />} />
+          <Route path="/settings/privacy" element={<PrivacySettingsPage />} />
+          <Route path="/settings/help" element={<HelpSupportPage />} />
+          <Route path="/settings/about" element={<AboutZotMatePage />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/login" />} />

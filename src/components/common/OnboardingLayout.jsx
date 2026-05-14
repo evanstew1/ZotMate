@@ -9,7 +9,7 @@ export default function OnboardingLayout({ children }) {
           </div>
           <div>
             <p className="text-white font-bold text-lg leading-tight">ZotMate</p>
-            <p className="text-slate-500 text-xs">UCI Student Matching</p>
+            <p className="text-slate-400 text-xs">UCI Student Matching</p>
           </div>
         </div>
 
@@ -30,19 +30,21 @@ export default function OnboardingLayout({ children }) {
               { icon: "🔒", title: "UCI verified only", desc: "Every member verifies their @uci.edu email" },
             ].map(({ icon, title, desc }) => (
               <div key={title} className="flex items-start gap-3">
-                <div className="w-8 h-8 bg-blue-600/15 border border-blue-500/20 rounded-lg flex items-center justify-center shrink-0 text-sm">
+                <div className="w-8 h-8 bg-blue-600/15 border border-blue-500/20 rounded-lg flex items-center justify-center shrink-0 text-sm" aria-hidden="true">
                   {icon}
                 </div>
                 <div>
                   <p className="text-white text-sm font-medium">{title}</p>
-                  <p className="text-slate-500 text-xs mt-0.5">{desc}</p>
+                  <p className="text-slate-400 text-xs mt-0.5">{desc}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        <p className="text-slate-600 text-xs">Built at UCI · Spring 2026 🐜</p>
+        <p className="text-slate-400 text-xs">
+          Built at UCI · Spring 2026 <span aria-hidden="true">🐜</span>
+        </p>
       </div>
 
       {/* Right form panel */}

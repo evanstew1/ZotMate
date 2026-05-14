@@ -58,6 +58,9 @@ export const MOCK_MATCHES = [
   },
 ];
 
+/** Current round's featured match (first in `MOCK_MATCHES`); identity stays hidden until Reveal. */
+export const WEEKLY_FEATURED_MATCH_ID = MOCK_MATCHES[0]?.id ?? null;
+
 export const MOCK_MESSAGES = {
   "match-1": [
     { id: "m1", senderId: "match-1", text: "Hey! Looks like we're both in IN4MATX 124 😊", createdAt: Date.now() - 3600000 * 5 },
@@ -82,4 +85,20 @@ export function getNextMatchDate() {
   nextMonday.setDate(now.getDate() + daysUntilMonday);
   nextMonday.setHours(0, 0, 0, 0);
   return nextMonday;
+}
+
+/** Start of the current weekly match round (most recent Monday 00:00 local). */
+export function getMatchRoundStartDate() {
+  const now = new Date();
+  const day = now.getDay();
+  const daysSinceMonday = (day + 6) % 7;
+  const start = new Date(now);
+  start.setDate(now.getDate() - daysSinceMonday);
+  start.setHours(0, 0, 0, 0);
+  return start;
+}
+
+/** Stable id for this week's match; changes when a new match round begins (each Monday). */
+export function getMatchRoundId() {
+  return getMatchRoundStartDate().toISOString();
 }

@@ -1,15 +1,12 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import RouteLoadingScreen from "../components/common/RouteLoadingScreen";
 
 export default function OnboardingRoute() {
   const { user, profile, loading } = useAuth();
 
   if (loading) {
-    return (
-      <div className="min-h-screen bg-slate-900 text-white flex items-center justify-center">
-        <p className="text-slate-400">Loading...</p>
-      </div>
-    );
+    return <RouteLoadingScreen />;
   }
 
   if (!user) {

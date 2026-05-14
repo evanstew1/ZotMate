@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { getNextMatchDate } from "../../data/mockData";
 
-function pad(n) { return String(n).padStart(2, "0"); }
+function pad(n) {
+  return String(n).padStart(2, "0");
+}
 
 export default function CountdownTimer() {
   const [timeLeft, setTimeLeft] = useState({});
@@ -29,17 +31,24 @@ export default function CountdownTimer() {
     { label: "Secs", val: timeLeft.secs },
   ];
 
+  const srLabel = `${pad(timeLeft.days ?? 0)} days, ${pad(timeLeft.hours ?? 0)} hours, ${pad(timeLeft.mins ?? 0)} minutes, ${pad(timeLeft.secs ?? 0)} seconds`;
+
   return (
-    <div className="flex items-center gap-2 justify-center">
+    <div
+      className="flex items-center gap-2 justify-center"
+      role="timer"
+      aria-label={`Next match in ${srLabel}`}
+    >
+      <span className="sr-only">{srLabel}</span>
       {units.map(({ label, val }, i) => (
-        <div key={label} className="flex items-center gap-2">
+        <div key={label} className="flex items-center gap-2" aria-hidden="true">
           <div className="flex flex-col items-center">
             <div className="bg-slate-800 border border-slate-700 rounded-lg w-12 h-12 flex items-center justify-center">
               <span className="text-white font-bold text-lg font-mono">{pad(val ?? 0)}</span>
             </div>
-            <span className="text-slate-500 text-xs mt-1">{label}</span>
+            <span className="text-slate-300 text-xs mt-1">{label}</span>
           </div>
-          {i < 3 && <span className="text-slate-600 font-bold text-lg mb-4">:</span>}
+          {i < 3 && <span className="text-slate-400 font-bold text-lg mb-4">:</span>}
         </div>
       ))}
     </div>
